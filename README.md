@@ -11,6 +11,7 @@ O boilerplate também conta uma integração de autenticação com o [boilerplat
 - [React Router](https://reactrouter.com/)
 - [Axios](https://github.com/axios/axios)
 - [Chakra-ui](https://chakra-ui.com/)
+- [Chakra-ui icons](https://chakra-ui.com/docs/components/media-and-icons/icon#installation)
 
 ## Rodando a aplicação
 

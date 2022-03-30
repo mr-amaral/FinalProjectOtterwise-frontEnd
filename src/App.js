@@ -12,6 +12,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<PublicPage />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<ProtectedPage />} />
           <Route
             path="/protected"
             element={

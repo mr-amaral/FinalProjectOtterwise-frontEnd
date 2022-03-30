@@ -1,5 +1,5 @@
 function PublicPage() {
-  return <h3>Public</h3>;
+  return <h3>Public</h3>
 }
 
-export default PublicPage;
+export default PublicPage

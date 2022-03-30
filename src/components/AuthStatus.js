@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/auth-context";
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 
 function AuthStatus() {
-  let auth = useAuth();
-  let navigate = useNavigate();
+  let auth = useAuth()
+  let navigate = useNavigate()
 
   if (!auth.user) {
-    return <p>Você não está logado.</p>;
+    return <></>
   }
 
   return (
@@ -14,13 +14,13 @@ function AuthStatus() {
       Bem vindo(a) {auth.user?.name}!{" "}
       <button
         onClick={() => {
-          auth.signout(() => navigate("/"));
+          auth.signout(() => navigate("/"))
         }}
       >
         Sair
       </button>
     </p>
-  );
+  )
 }
 
-export default AuthStatus;
+export default AuthStatus
