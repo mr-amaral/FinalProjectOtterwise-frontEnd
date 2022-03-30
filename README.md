@@ -1,4 +1,4 @@
-# Boilerplate de front-end (SPA) da Otterwise
+# Final Project de front-end [Otterwise](https://www.otterwise.co)
 
 Esse boilerplate deve ser utilizado para realizar o desafio final do curso WEB Developer da Otterwise, mas também pode ser usado para criar qualquer aplicação SPA, pois é baseado no [Create React APP](https://create-react-app.dev/).
 
@@ -10,6 +10,7 @@ O boilerplate também conta uma integração de autenticação com o [boilerplat
 - [Styled components](https://styled-components.com/)
 - [React Router](https://reactrouter.com/)
 - [Axios](https://github.com/axios/axios)
+- [Chakra-ui](https://chakra-ui.com/)
 
 ## Rodando a aplicação
 
