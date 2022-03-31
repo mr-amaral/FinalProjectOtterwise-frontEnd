@@ -1,24 +1,24 @@
-import { Link, Outlet } from "react-router-dom"
+// import { Link, Outlet } from "react-router-dom"
 
-import AuthStatus from "./AuthStatus"
+// import AuthStatus from "./AuthStatus"
 
-function Layout() {
-  return (
-    <div>
-      <AuthStatus />
-      {/* 
-      <ul>
-        <li>
-          <Link to="/">Public Page</Link>
-        </li>
-        <li>
-          <Link to="/protected">Protected Page</Link>
-        </li>
-      </ul> */}
+// function Layout() {
+//   return (
+//     <div>
+//       <AuthStatus />
 
-      <Outlet />
-    </div>
-  )
-}
+//       <ul>
+//         <li>
+//           <Link to="/">Public Page</Link>
+//         </li>
+//         <li>
+//           <Link to="/protected">Protected Page</Link>
+//         </li>
+//       </ul>
 
-export default Layout
+//       <Outlet />
+//     </div>
+//   )
+// }
+
+// export default Layout

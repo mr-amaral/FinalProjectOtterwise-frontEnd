@@ -12,6 +12,7 @@ O boilerplate também conta uma integração de autenticação com o [boilerplat
 - [Axios](https://github.com/axios/axios)
 - [Chakra-ui](https://chakra-ui.com/)
 - [Chakra-ui icons](https://chakra-ui.com/docs/components/media-and-icons/icon#installation)
+- [Yup](https://github.com/jquense/yup) - para validação de dados
 
 ## Rodando a aplicação
 

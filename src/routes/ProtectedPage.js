@@ -1,11 +1,26 @@
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom"
+import { useAuth } from "../context/auth-context"
 
 function ProtectedPage() {
-  return <Title>Protected</Title>;
+  let auth = useAuth()
+  let navigate = useNavigate()
+
+  if (!auth.user) {
+    return <></>
+  }
+
+  return (
+    <p>
+      Bem vindo(a) {auth.user?.name}!{" "}
+      <button
+        onClick={() => {
+          auth.signout(() => navigate("/"))
+        }}
+      >
+        Sair
+      </button>
+    </p>
+  )
 }
 
-const Title = styled.h3`
-  color: blue;
-`;
-
-export default ProtectedPage;
+export default ProtectedPage
