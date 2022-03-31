@@ -9,6 +9,7 @@ const Header = ({ bgLogin, paw, Children }) => {
         backgroundImage={bgLogin}
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
+        backgroundPosition="center"
         gap="10px"
       >
         <Box p="32px" mt="13.95px">
