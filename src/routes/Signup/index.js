@@ -51,8 +51,8 @@ const Signup = () => {
       .string("Campo precisa ser um texto")
       .required("Campo obrigatório")
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        "Senha deve conter no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial"
+        /^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/,
+        "Deve conter no mínimo um número e uma letra maiúscula"
       ),
     username: yup
       .string("Campo precisa ser um texto")
@@ -62,10 +62,8 @@ const Signup = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  })
+    formState: { errors, isSubmitting },
+  } = useForm({ resolver: yupResolver(schema) })
 
   const onSubmit = async (data) => {
     try {
@@ -128,7 +126,7 @@ const Signup = () => {
             >
               Cadastro
             </Heading>
-            <Stack as="form" onSubmit={() => handleSubmit(onSubmit)}>
+            <Stack as="form" onSubmit={handleSubmit(onSubmit)}>
               <Flex
                 justifyContent={["center"]}
                 flexDirection="column"
@@ -144,7 +142,14 @@ const Signup = () => {
                   >
                     Nome
                   </FormLabel>
-                  <Input {...register("name")} placeholder="Nome" />
+                  <Input {...register("name")} type="text" placeholder="Nome" />
+                  <Text
+                    fontWeight={["400"]}
+                    lineHeight={["16px"]}
+                    fontSize={["10px", "12px"]}
+                  >
+                    {errors.name && errors.name.message}
+                  </Text>
                 </Box>
                 <Box>
                   <FormLabel
@@ -155,7 +160,18 @@ const Signup = () => {
                   >
                     E-mail
                   </FormLabel>
-                  <Input {...register("email")} placeholder="E-mail" />
+                  <Input
+                    {...register("email")}
+                    type="email"
+                    placeholder="E-mail"
+                  />
+                  <Text
+                    fontWeight={["400"]}
+                    lineHeight={["16px"]}
+                    fontSize={["10px", "12px"]}
+                  >
+                    {errors.email && errors.email.message}
+                  </Text>
                 </Box>
                 <Box>
                   <FormLabel
@@ -167,9 +183,17 @@ const Signup = () => {
                     Nome de usuário
                   </FormLabel>
                   <Input
+                    type="text"
                     {...register("username")}
                     placeholder="Ex.: @billbulldog"
                   />
+                  <Text
+                    fontWeight={["400"]}
+                    lineHeight={["16px"]}
+                    fontSize={["10px", "12px"]}
+                  >
+                    {errors.username && errors.username.message}
+                  </Text>
                 </Box>
                 <Box>
                   <FormLabel
@@ -194,9 +218,21 @@ const Signup = () => {
                       />
                     </InputRightElement>
                   </InputGroup>
+                  <Text
+                    fontWeight={["400"]}
+                    lineHeight={["16px"]}
+                    fontSize={["10px", "12px"]}
+                  >
+                    {errors.password && errors.password.message}
+                  </Text>
                 </Box>
               </Flex>
-              <Button colorScheme="cyan" color="#fff" type="submit">
+              <Button
+                isLoading={isSubmitting}
+                colorScheme="cyan"
+                color="#fff"
+                type="submit"
+              >
                 Entrar
               </Button>
             </Stack>

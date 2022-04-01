@@ -10,7 +10,6 @@ import {
   symbol,
 } from "../../assets/images"
 import { Link as RRLink } from "react-router-dom"
-import * as yup from "yup"
 
 import {
   Link,
@@ -28,13 +27,18 @@ import {
   Text,
   Image,
   Wrap,
+  useToast,
 } from "@chakra-ui/react"
 import { ViewIcon } from "@chakra-ui/icons"
+import { useState } from "react"
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
   const { signin } = useAuth()
+
+  const toast = useToast()
   const {
     register,
     handleSubmit,
@@ -44,11 +48,19 @@ function Login() {
   const from = location.state?.from?.pathname || "/protected"
 
   const onSubmit = async (data) => {
+    setIsLoading(true)
     try {
       await signin(data)
+      setIsLoading(false)
       navigate(from, { replace: true })
     } catch (error) {
-      console.log(error)
+      toast({
+        title: "Email ou senha incorretos",
+        description: error.message,
+        status: "error",
+        duration: 1000,
+        isClosable: true,
+      })
     }
   }
 
@@ -168,6 +180,8 @@ function Login() {
                 </Box>
               </Flex>
               <Button
+                isLoading={isLoading}
+                _hover={{ bg: "cyan.800" }}
                 fontSize={["14px"]}
                 fontWeight={["600"]}
                 lineHeight={["24px"]}
