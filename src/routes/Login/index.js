@@ -1,10 +1,17 @@
 import { useLocation, useNavigate } from "react-router-dom"
 import { useAuth } from "../../context/auth-context"
 import { useForm } from "react-hook-form"
-import { bgLogin, logo, paw } from "../../assets/images"
+import {
+  bgDesktop,
+  bgLogin,
+  logo,
+  logoWhite,
+  paw,
+  symbol,
+} from "../../assets/images"
 import { Link as RRLink } from "react-router-dom"
-import Header from "../../components/Header"
-import Logo from "../../components/Logo"
+import * as yup from "yup"
+
 import {
   Link,
   Box,
@@ -19,6 +26,8 @@ import {
   InputRightElement,
   Stack,
   Text,
+  Image,
+  Wrap,
 } from "@chakra-ui/react"
 import { ViewIcon } from "@chakra-ui/icons"
 
@@ -45,21 +54,82 @@ function Login() {
 
   return (
     <>
-      <Flex flexDirection={["column", "row"]}>
-        <Header
-          bgLogin={bgLogin}
-          paw={paw}
-          Children="Comece agora. Conecte-se já."
-        />
-
-        <Container p="32px">
-          <Flex gap="30px" flexDirection="column">
-            <Heading>Login</Heading>
+      <Flex
+        flexDirection={["column", "row"]}
+        w={["auto", "auto", "100%"]}
+        h={["auto", "100vh", "100vh"]}
+      >
+        <Flex
+          flexDirection={["column"]}
+          width={["auto", "60%"]}
+          backgroundImage={[bgLogin, bgDesktop]}
+          backgroundRepeat="no-repeat"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          justifyContent={["flex-start", "center"]}
+          alignItems={["flex-start", "center"]}
+          gap="10px"
+        >
+          <Box display={["block", "none"]} p="32px" mt="13.95px">
+            <Image w="52.78" h="53.55px" src={paw} />
+          </Box>
+          <Box display={["none", "block"]}>
+            <Image src={logoWhite} />
+          </Box>
+          <Box display={["block", "none"]} padding="0px 32px 24.88px 26px">
+            <Text
+              fontSize="36px"
+              fontWeight="bold"
+              lineHeight="49.03px"
+              color="#fff"
+            >
+              {" "}
+              Comece agora. Conecte-se já.
+            </Text>
+          </Box>
+        </Flex>
+        <Container
+          w={["auto", "70%", "100%"]}
+          p={["32px", "50px"]}
+          margin={["auto", "auto", "auto", "auto"]}
+          mt={["auto", "4px"]}
+        >
+          <Flex gap="30px" mb="50px" flexDirection="column">
+            <Box display={["none", "block"]}>
+              <Image src={symbol} />
+            </Box>
+            <Box w="264px" h="98px" display={["none", "block"]}>
+              <Text
+                fontSize="36px"
+                fontWeight="700"
+                lineHeight="49.03px"
+                color="cyan.400"
+              >
+                Comece agora. Conecte-se já.
+              </Text>
+            </Box>
+            <Heading
+              fontSize={["24px"]}
+              fontWeight={["600"]}
+              lineHeight={["40px"]}
+            >
+              Login
+            </Heading>
             <Stack as="form" onSubmit={handleSubmit(onSubmit)}>
               <Flex flexDirection="column" gap="30px" mb="40px">
                 <Box>
-                  <FormLabel htmlFor="email">E-mail</FormLabel>
+                  <FormLabel
+                    fontWeight={["600"]}
+                    fontSize={["14px"]}
+                    lineHeight={["16px"]}
+                    htmlFor="email"
+                  >
+                    E-mail
+                  </FormLabel>
                   <Input
+                    fontWeight={["400"]}
+                    fontSize={["16px"]}
+                    lineHeight={["24px"]}
                     {...register("email", {
                       required: true,
                     })}
@@ -73,6 +143,9 @@ function Login() {
                   <FormLabel htmlFor="password">Senha</FormLabel>
                   <InputGroup>
                     <Input
+                      fontWeight={["400"]}
+                      fontSize={["16px"]}
+                      lineHeight={["24px"]}
                       {...register("password", {
                         required: true,
                       })}
@@ -94,17 +167,35 @@ function Login() {
                   )}
                 </Box>
               </Flex>
-              <Button type="submit">Entrar</Button>
+              <Button
+                fontSize={["14px"]}
+                fontWeight={["600"]}
+                lineHeight={["24px"]}
+                color="#fff"
+                bgColor="cyan.400"
+                type="submit"
+              >
+                Entrar
+              </Button>
             </Stack>
-            <Flex flexDirection="column">
-              <Text>Ainda não possui uma conta?</Text>
-              <Link as={RRLink} to="/signup" textDecoration="underline">
+            <Wrap flexDirection={["column", "row"]}>
+              <Text fontSize={["16px"]} lineHeight={["24px"]}>
+                Ainda não possui uma conta?
+              </Text>
+              <Link
+                color="cyan"
+                as={RRLink}
+                to="/signup"
+                textDecoration="underline"
+              >
                 Cadastrar-se
               </Link>
-            </Flex>
+            </Wrap>
+          </Flex>
+          <Flex alignItems="center" justifyContent="center">
+            <Image display={["flex", "none"]} src={logo} />
           </Flex>
         </Container>
-        <Logo logo={logo} />
       </Flex>
     </>
   )
