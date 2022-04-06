@@ -13,7 +13,6 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 import { logo, btnMobile, dogimg, petImg } from "../assets/images"
-import Cardtweet from "../components/CardTweet"
 import { useRef } from "react"
 
 function PublicPage() {

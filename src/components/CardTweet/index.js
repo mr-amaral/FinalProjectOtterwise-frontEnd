@@ -1,7 +1,8 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react"
-import React from "react"
+import * as React from "react"
+import TimeAgo from "timeago-react"
 
-const Cardtweet = ({ petImg, name, username, createAt, content }) => {
+const Cardtweet = ({ petImg, name, username, postTime, content }) => {
   return (
     <>
       <Flex
@@ -21,7 +22,9 @@ const Cardtweet = ({ petImg, name, username, createAt, content }) => {
             <Text>{name}</Text>
             <Text>{username}</Text>
             <Text>•</Text>
-            <Text>{createAt}</Text>
+            <Text>
+              <TimeAgo datetime={new Date(postTime)} />
+            </Text>
           </Flex>
           <Box>
             <Text
