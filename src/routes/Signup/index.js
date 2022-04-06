@@ -16,6 +16,7 @@ import {
   Stack,
   Text,
   Wrap,
+  useToast,
 } from "@chakra-ui/react"
 import React from "react"
 import {
@@ -29,13 +30,14 @@ import {
 import * as yup from "yup"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-import { useAuth } from "../../context/auth-context"
+import { signup } from "../../services/auth"
 
 const Signup = () => {
   const [offView, setOffView] = React.useState(false)
   const [type, setType] = React.useState("password")
-  const { signin } = useAuth()
+
   const navigate = useNavigate()
+  const toast = useToast()
   let schema = yup.object().shape({
     name: yup
       .string("Campo precisa ser um texto")
@@ -67,10 +69,27 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      await signin(data)
-      navigate("/login", { replace: true })
+      await signup(data)
+      toast({
+        title: "Sucesso",
+        description: "Cadastro realizado com sucesso",
+        status: "success",
+        position: "center",
+        duration: 3000,
+        isClosable: true,
+      })
+      setTimeout(() => {
+        navigate("/login")
+      }, 1000)
     } catch (error) {
       console.log(error)
+      toast({
+        title: "Conta não foi criada.",
+        description: error.response.data,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      })
     }
   }
 

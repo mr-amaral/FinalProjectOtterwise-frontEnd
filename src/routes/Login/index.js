@@ -52,6 +52,13 @@ function Login() {
     try {
       await signin(data)
       setIsLoading(false)
+      toast({
+        title: "Login realizado com sucesso!",
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      })
       navigate(from, { replace: true })
     } catch (error) {
       toast({
