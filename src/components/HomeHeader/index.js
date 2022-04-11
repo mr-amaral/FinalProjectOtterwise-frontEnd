@@ -23,14 +23,13 @@ import React, { useRef } from "react"
 import { exit } from "../../assets/images"
 import { Link as RRLink } from "react-router-dom"
 import { useAuth } from "../../context/auth-context"
-import { useNavigate } from "react-router-dom"
 
 const HomeHeader = ({ btnMobile, logo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isOpenModal, setIsOpenModal] = React.useState(false)
   const auth = useAuth()
-  const navigate = useNavigate()
-  const handleClose1 = () => {
+
+  const handleClose = () => {
     onClose()
     setIsOpenModal(true)
   }
@@ -88,12 +87,12 @@ const HomeHeader = ({ btnMobile, logo }) => {
             <Link as={RRLink} p={["4px"]} to={"/home"}>
               Home
             </Link>
-            <Link as={RRLink} p={["4px"]} to={`/profile`}>
+            <Link as={RRLink} p={["4px"]} to={`/profile/${auth.user.username}`}>
               Meu Perfil
             </Link>
             <Flex w={["100%"]} gap={["11px"]}>
               <Button
-                onClick={handleClose1}
+                onClick={handleClose}
                 w={["100%"]}
                 p={["10px"]}
                 border={["none"]}
@@ -186,7 +185,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
                 </Link>
                 <Flex w={["100%"]} gap={["11px"]}>
                   <Button
-                    onClick={() => auth.signout(() => navigate("/login"))}
+                    onClick={handleClose}
                     w={["100%"]}
                     p={["10px"]}
                     border={["none"]}

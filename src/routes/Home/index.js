@@ -53,7 +53,6 @@ const Home = () => {
           setPetweets(petweets.concat(response.data.petweets))
         }
         setHasMore(page < response.data.pagination.pageCount)
-        console.log(response.data.pagination.pageCount)
       }
       request()
     } catch (error) {}

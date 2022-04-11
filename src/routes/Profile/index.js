@@ -55,7 +55,6 @@ const Profile = () => {
     <>
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader btnMobile={btnMobile} logo={logo} />
-
         <Flex
           w={["100%", "50%"]}
           // gap={["12px"]}
