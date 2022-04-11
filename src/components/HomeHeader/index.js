@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Drawer,
   DrawerBody,
@@ -8,7 +7,6 @@ import {
   DrawerOverlay,
   Flex,
   Image,
-  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -20,9 +18,9 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 import React, { useRef } from "react"
-import { exit } from "../../assets/images"
-import { Link as RRLink } from "react-router-dom"
+import { exit, homeIcon, profileIcon } from "../../assets/images"
 import { useAuth } from "../../context/auth-context"
+import DrawerLink from "../../components/DrawerLink"
 
 const HomeHeader = ({ btnMobile, logo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -46,31 +44,28 @@ const HomeHeader = ({ btnMobile, logo }) => {
         alignItems={["center", "center"]}
         justifyContent={["center", "flex-start"]}
       >
-        <Flex
-          flexDirection={["column"]}
+        <Image
           display={["flex", "none"]}
           position={["absolute"]}
           top="16px"
           bottom="16px"
           left="16px"
-        >
+          w="24px"
+          h="16px"
+          src={btnMobile}
+          alt="logo"
+          onClick={() => onOpen()}
+        />
+        <Flex w={["100%"]} h={["48px"]}>
           <Image
-            w="24px"
-            h="16px"
-            src={btnMobile}
-            alt="logo"
-            onClick={() => onOpen()}
-          />
-        </Flex>
-        <Box>
-          <Image
+            alignSelf={["center"]}
+            w={["100%"]}
             mt={["0", "24px"]}
-            w={["116px", "225px"]}
             h={["28px", "54px"]}
             src={logo}
             alt="logo"
           />
-        </Box>
+        </Flex>
         <Flex
           mt={["0", "24px"]}
           w={["100%"]}
@@ -78,80 +73,72 @@ const HomeHeader = ({ btnMobile, logo }) => {
           flexDirection={["column"]}
           display={["none", "flex"]}
         >
-          <Flex
-            w={["100%"]}
-            gap={["4px"]}
-            align={["center"]}
-            direction={"column"}
-          >
-            <Link as={RRLink} p={["4px"]} to={"/home"}>
-              Home
-            </Link>
-            <Link as={RRLink} p={["4px"]} to={`/profile/${auth.user.username}`}>
-              Meu Perfil
-            </Link>
-            <Flex w={["100%"]} gap={["11px"]}>
-              <Button
-                onClick={handleClose}
-                w={["100%"]}
-                p={["10px"]}
-                border={["none"]}
-                _focus={{
-                  boxShadow: "none",
-                  outline: "none",
-                }}
-                _hover={{
-                  boxShadow: "none",
-                  outline: "none",
-                }}
-                background={["white"]}
-                boxShadow={["none"]}
-                display={["flex"]}
-                gap={["11px"]}
-                mt={["30px"]}
-                to={`/`}
-              >
-                <Image src={exit} />
-                Sair
-              </Button>
+          <DrawerLink icon={homeIcon} to={"/home"}>
+            Home
+          </DrawerLink>
+          <DrawerLink icon={profileIcon} to={`/profile/${auth.user.username}`}>
+            Meu Perfil
+          </DrawerLink>
+          <Flex w={["100%"]} gap={["11px"]}>
+            <Button
+              onClick={handleClose}
+              w={["100%"]}
+              p={["10px"]}
+              border={["none"]}
+              _focus={{
+                boxShadow: "none",
+                outline: "none",
+              }}
+              _hover={{
+                boxShadow: "none",
+                outline: "none",
+              }}
+              background={["white"]}
+              boxShadow={["none"]}
+              display={["flex"]}
+              gap={["11px"]}
+              mt={["30px"]}
+              to={`/`}
+            >
+              <Image src={exit} />
+              Sair
+            </Button>
 
-              {/* <ModalOverlay /> */}
+            {/* <ModalOverlay /> */}
 
-              <Modal
-                isCentered
-                isOpen={isOpenModal}
-                onClose={() => setIsOpenModal(false)}
-              >
-                <ModalOverlay
-                  bg="rgba(0, 0, 0, 0.5)"
-                  backdropFilter="auto"
-                  // backdropInvert="80%"
-                  backdropBlur="2px"
-                />
-                <ModalContent>
-                  <ModalHeader>Sair desta conta?</ModalHeader>
-                  <ModalCloseButton />
-                  <ModalBody>
-                    <Text>Deseja realmente sair desta conta?</Text>
-                  </ModalBody>
-                  <ModalFooter>
-                    <Button
-                      mr={["0.5rem"]}
-                      onClick={() => auth.signout()}
-                      onClose={() => setIsOpenModal(false)}
-                    >
-                      Sair
-                    </Button>
-                    <Button
-                      colorScheme={"cyan"}
-                      onClick={() => setIsOpenModal(false)}
-                    >
-                      Cancelar
-                    </Button>
-                  </ModalFooter>
-                </ModalContent>
-              </Modal>
-            </Flex>
+            <Modal
+              isCentered
+              isOpen={isOpenModal}
+              onClose={() => setIsOpenModal(false)}
+            >
+              <ModalOverlay
+                bg="rgba(0, 0, 0, 0.5)"
+                backdropFilter="auto"
+                backdropBlur="2px"
+              />
+              <ModalContent>
+                <ModalHeader>Sair desta conta?</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody>
+                  <Text>Deseja realmente sair desta conta?</Text>
+                </ModalBody>
+                <ModalFooter>
+                  <Button
+                    mr={["0.5rem"]}
+                    onClick={() => auth.signout()}
+                    onClose={() => setIsOpenModal(false)}
+                  >
+                    Sair
+                  </Button>
+                  <Button
+                    colorScheme={"cyan"}
+                    onClick={() => setIsOpenModal(false)}
+                  >
+                    Cancelar
+                  </Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </Flex>
         </Flex>
       </Flex>
@@ -176,39 +163,36 @@ const HomeHeader = ({ btnMobile, logo }) => {
             </DrawerHeader>
 
             <DrawerBody p={"0"} mt={"36px"}>
-              <Flex gap={["4px"]} align={["center"]} direction={"column"}>
-                <Link as={RRLink} p={["2px"]} to={"/home"}>
-                  Home
-                </Link>
-                <Link as={RRLink} p={["2px"]} to={`/profile`}>
+              <Flex flexDirection={["column"]}>
+                <DrawerLink to={"/home"}>Home</DrawerLink>
+                <DrawerLink to={`/profile/${auth.user.username}`}>
                   Meu Perfil
-                </Link>
-                <Flex w={["100%"]} gap={["11px"]}>
-                  <Button
-                    onClick={handleClose}
-                    w={["100%"]}
-                    p={["10px"]}
-                    border={["none"]}
-                    _focus={{
-                      boxShadow: "none",
-                      outline: "none",
-                    }}
-                    _hover={{
-                      boxShadow: "none",
-                      outline: "none",
-                    }}
-                    background={["white"]}
-                    boxShadow={["none"]}
-                    display={["flex"]}
-                    gap={["11px"]}
-                    mt={["30px"]}
-                    to={`/`}
-                  >
-                    <Image src={exit} />
-                    Sair
-                  </Button>
-                </Flex>
+                </DrawerLink>
               </Flex>
+
+              <Button
+                onClick={handleClose}
+                w={["100%"]}
+                p={["10px"]}
+                border={["none"]}
+                _focus={{
+                  boxShadow: "none",
+                  outline: "none",
+                }}
+                _hover={{
+                  boxShadow: "none",
+                  outline: "none",
+                }}
+                background={["white"]}
+                boxShadow={["none"]}
+                display={["flex"]}
+                gap={["11px"]}
+                mt={["15px"]}
+                to={`/`}
+              >
+                <Image src={exit} />
+                Sair
+              </Button>
             </DrawerBody>
           </Flex>
         </DrawerContent>

@@ -8,8 +8,12 @@ import btnMobile from "./svg/btnMobile.svg"
 import petImg from "./svg/petimg.svg"
 import dogimg from "./png/dogimg.png"
 import exit from "./svg/exit.svg"
+import homeIcon from "./svg/home.svg"
+import profileIcon from "./svg/perfil.svg"
 
 export {
+  profileIcon,
+  homeIcon,
   logo,
   bgLogin,
   paw,
