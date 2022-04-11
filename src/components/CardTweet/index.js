@@ -18,24 +18,60 @@ const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
         gap="8px"
       >
         <Box w="48px" h="48px">
-          <Image w="48px" h="48px" src={data[0].image}></Image>
+          <Image
+            w={["48px", "40px"]}
+            h={["48px", "40px"]}
+            src={data[0].image}
+          ></Image>
         </Box>
         <Flex w={["272px"]} h={["auto"]} flexDirection={["column"]}>
           <Flex gap="4px">
-            <Text as={Link} to={`/profile/${usernameProp}`}>
+            <Text
+              fontWeight={["700"]}
+              fontSize={["0.875rem", "1rem"]}
+              lineHeight={["1.18rem", "1.27rem"]}
+              letterSpacing={["-0.26px", "0"]}
+              color={["gray.600", "#000000"]}
+              as={Link}
+              to={`/profile/${usernameProp}`}
+            >
               {name}
             </Text>
-            <Text>{usernameProp}</Text>
-            <Text>•</Text>
-            <Text>
+            <Text
+              fontWeight={["300", "400"]}
+              fontSize={["0.75rem", "1rem"]}
+              lineHeight={["1.05rem", "1.27rem"]}
+              letterSpacing={["-0.26px", "0"]}
+              color={["gray.600", "#828282"]}
+            >
+              {usernameProp}
+            </Text>
+            <Text
+              fontWeight={["300", "400"]}
+              fontSize={["0.75rem", "1rem"]}
+              lineHeight={["1rem", "1.27rem"]}
+              letterSpacing={["-0.26px", "0"]}
+              color={["gray.600", "#828282"]}
+            >
+              •
+            </Text>
+            <Text
+              fontWeight={["300"]}
+              fontSize={["0.75rem", "1rem"]}
+              lineHeight={["1.05rem", "1.27rem"]}
+              letterSpacing={["-0.26px", "0"]}
+              color={["gray.600"]}
+            >
               <TimeAgo date={new Date(postTime)} formatter={formatter} />
             </Text>
           </Flex>
           <Box>
             <Text
-              fontSize={"14px"}
-              lineHeight="17.84px"
-              letterSpacing={"-0.26"}
+              fontWeight={["400"]}
+              fontSize={["0.87rem", "1rem"]}
+              lineHeight={["1rem", "1.37rem"]}
+              letterSpacing={["-0.26px", "0"]}
+              color={["#141619", "#333333"]}
             >
               {content}
             </Text>

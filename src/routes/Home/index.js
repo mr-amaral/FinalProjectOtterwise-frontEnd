@@ -74,7 +74,7 @@ const Home = () => {
     <>
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader w={["100%"]} btnMobile={btnMobile} logo={logo} />
-        <Flex w={["100%", "70%"]} flexDirection={["column"]}>
+        <Flex w={["100%", "100%"]} flexDirection={["column"]}>
           <Flex display={["none", "flex"]} p={"34px"}>
             <Image
               width={"48px"}
@@ -139,7 +139,7 @@ const Home = () => {
         </Flex>
         <Box
           display={["none", "flex"]}
-          w={["30%"]}
+          w={["24%"]}
           borderLeft={["none", "1px solid rgba(33,33,33,0.2)"]}
           h={["100vh"]}
         ></Box>
