@@ -1,8 +1,12 @@
 import { Box, Flex, Image, Text } from "@chakra-ui/react"
 import * as React from "react"
-import TimeAgo from "timeago-react"
+import { Link } from "react-router-dom"
+import TimeAgo from "react-timeago"
+import buildFormatter from "react-timeago/lib/formatters/buildFormatter"
+import ptBrStrings from "react-timeago/lib/language-strings/pt-br"
 
-const Cardtweet = ({ petImg, name, username, postTime, content }) => {
+const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
+  const formatter = buildFormatter(ptBrStrings)
   return (
     <>
       <Flex
@@ -11,7 +15,6 @@ const Cardtweet = ({ petImg, name, username, postTime, content }) => {
         border="1px"
         borderColor="gray.200"
         p={"20px 16px 16px 16px"}
-        justifyContent={"center"}
         gap="8px"
       >
         <Box w="48px" h="48px">
@@ -19,11 +22,13 @@ const Cardtweet = ({ petImg, name, username, postTime, content }) => {
         </Box>
         <Flex w={["272px"]} h={["auto"]} flexDirection={["column"]}>
           <Flex gap="4px">
-            <Text>{name}</Text>
-            <Text>{username}</Text>
+            <Text as={Link} to={`/profile/${usernameProp}`}>
+              {name}
+            </Text>
+            <Text>{usernameProp}</Text>
             <Text>•</Text>
             <Text>
-              <TimeAgo datetime={new Date(postTime)} />
+              <TimeAgo date={new Date(postTime)} formatter={formatter} />
             </Text>
           </Flex>
           <Box>

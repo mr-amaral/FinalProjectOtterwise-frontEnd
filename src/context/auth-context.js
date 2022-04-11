@@ -1,54 +1,56 @@
-import { createContext, useState, useContext } from "react";
-import { useLocation, Navigate } from "react-router-dom";
+import { createContext, useState, useContext } from "react"
+import { useLocation, Navigate } from "react-router-dom"
 
-import { setInStorage, login } from "../services/auth";
+import { setInStorage, login } from "../services/auth"
 
-const AuthContext = createContext(null);
+const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
-  const userStored = localStorage.getItem("user");
-  const [user, setUser] = useState(userStored ? JSON.parse(userStored) : null);
+  const userStored = localStorage.getItem("user")
+  const [user, setUser] = useState(userStored ? JSON.parse(userStored) : null)
 
   const signin = async (data) => {
     try {
-      const response = await login(data);
+      const response = await login(data)
       const user = {
         accessToken: response.data.accessToken,
         ...response.data.user,
-      };
+      }
 
-      setInStorage("user", user);
-      setUser(user);
+      setInStorage("user", user)
+      setUser(user)
     } catch (error) {
-      console.log(error);
-      alert("Email ou senha inválidos");
+      console.log(error)
+      alert("Email ou senha inválidos")
     }
-  };
+  }
+
+  // quando o usuario deslogar manda ela para a pagina de login
 
   const signout = () => {
-    localStorage.clear();
-    setUser(null);
-  };
+    localStorage.clear()
+    setUser(null)
+  }
 
   return (
     <AuthContext.Provider value={{ user, signin, signout }}>
       {children}
     </AuthContext.Provider>
-  );
+  )
 }
 
 export function useAuth() {
-  return useContext(AuthContext);
+  return useContext(AuthContext)
 }
 
 export function RequireAuth({ children }) {
-  let auth = useAuth();
+  let auth = useAuth()
 
-  let location = useLocation();
+  let location = useLocation()
 
   if (!auth.user?.accessToken) {
-    return <Navigate to="/login" state={{ from: location }} />;
+    return <Navigate to="/login" state={{ from: location }} />
   }
 
-  return children;
+  return children
 }

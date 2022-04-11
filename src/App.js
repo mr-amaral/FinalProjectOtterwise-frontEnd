@@ -3,32 +3,38 @@ import { AuthProvider, RequireAuth } from "./context/auth-context"
 import Home from "./routes/Home"
 import Login from "./routes/Login"
 import Profile from "./routes/Profile"
-// import Layout from "./components/Layout"
-// import PublicPage from "./routes/PublicPage"
-import ProtectedPage from "./routes/ProtectedPage"
-import PublicPage from "./routes/PublicPage"
 import Signup from "./routes/Signup"
+import { ChangeContextProvider } from "./context/petweetChange-context"
 
 function App() {
   return (
     <AuthProvider>
-      <Routes>
-        <Route>
-          <Route path="/" element={<PublicPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route
-            path="/protected"
-            element={
-              <RequireAuth>
-                <ProtectedPage />
-              </RequireAuth>
-            }
-          />
-          <Route path="/home" element={<Home />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
-      </Routes>
+      <ChangeContextProvider>
+        <Routes>
+          <Route>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/home"
+              element={
+                <RequireAuth>
+                  <Home />
+                </RequireAuth>
+              }
+            />
+
+            <Route
+              path="/profile/:username"
+              element={
+                <RequireAuth>
+                  <Profile />
+                </RequireAuth>
+              }
+            />
+          </Route>
+        </Routes>
+      </ChangeContextProvider>
     </AuthProvider>
   )
 }

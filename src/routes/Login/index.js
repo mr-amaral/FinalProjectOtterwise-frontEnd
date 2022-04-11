@@ -29,11 +29,13 @@ import {
   Wrap,
   useToast,
 } from "@chakra-ui/react"
-import { ViewIcon } from "@chakra-ui/icons"
+import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import { useState } from "react"
 
 function Login() {
   const [isLoading, setIsLoading] = useState(false)
+  const [offView, setOffView] = useState(false)
+  const [type, setType] = useState("password")
   const navigate = useNavigate()
   const location = useLocation()
   const { signin } = useAuth()
@@ -45,7 +47,7 @@ function Login() {
     formState: { errors },
   } = useForm()
 
-  const from = location.state?.from?.pathname || "/protected"
+  const from = location.state?.from?.pathname || "/"
 
   const onSubmit = async (data) => {
     setIsLoading(true)
@@ -68,6 +70,15 @@ function Login() {
         duration: 1000,
         isClosable: true,
       })
+    }
+  }
+
+  const handleClick = () => {
+    setOffView(!offView)
+    if (type === "password") {
+      setType("text")
+    } else {
+      setType("password")
     }
   }
 
@@ -165,17 +176,17 @@ function Login() {
                       fontWeight={["400"]}
                       fontSize={["16px"]}
                       lineHeight={["24px"]}
-                      {...register("password", {
+                      {...register(type, {
                         required: true,
                       })}
                       placeholder="Senha"
-                      type="password"
+                      type={type}
                     />
                     <InputRightElement>
                       <IconButton
                         bg="inherit"
-                        icon={<ViewIcon />}
-                        onClick={() => console.log("ClIK")}
+                        icon={offView ? <ViewIcon /> : <ViewOffIcon />}
+                        onClick={() => handleClick()}
                       />
                     </InputRightElement>
                   </InputGroup>
