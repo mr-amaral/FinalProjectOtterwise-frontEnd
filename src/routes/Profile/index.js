@@ -34,15 +34,17 @@ const Profile = () => {
           page,
           perPage: 10,
         })
-        console.log(page)
+
         if (page === 1) {
           setPetweets(responsePetweets.data.petweets)
+          // console.log(user.id)
         } else {
           setPetweets(petweets.concat(responsePetweets.data.petweets))
         }
         setHasMore(page < responsePetweets.data.pagination.pageCount)
       }
-      if (user) {
+      if (user?.id) {
+        console.log(user)
         request()
       }
     } catch (error) {

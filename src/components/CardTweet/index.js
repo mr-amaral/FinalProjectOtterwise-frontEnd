@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import TimeAgo from "react-timeago"
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter"
 import ptBrStrings from "react-timeago/lib/language-strings/pt-br"
-
+import { data } from "../../utils/data"
 const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
   const formatter = buildFormatter(ptBrStrings)
   return (
@@ -18,7 +18,7 @@ const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
         gap="8px"
       >
         <Box w="48px" h="48px">
-          <Image w="48px" h="48px" src={petImg}></Image>
+          <Image w="48px" h="48px" src={data[0].image}></Image>
         </Box>
         <Flex w={["272px"]} h={["auto"]} flexDirection={["column"]}>
           <Flex gap="4px">
