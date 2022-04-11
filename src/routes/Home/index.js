@@ -46,7 +46,7 @@ const Home = () => {
   React.useEffect(() => {
     try {
       const request = async () => {
-        const response = await getAllPetweets({ page, perPage: 5 })
+        const response = await getAllPetweets({ page, perPage: 10 })
         if (page === 1) {
           setPetweets(response.data.petweets)
         } else {

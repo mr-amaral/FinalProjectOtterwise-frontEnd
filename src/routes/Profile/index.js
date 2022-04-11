@@ -5,8 +5,8 @@ import HomeHeader from "../../components/HomeHeader"
 import { getUserByParams } from "../../services/users"
 import Cardtweet from "../../components/CardTweet"
 import { getPetweetsByUserId } from "../../services/petweets"
-import { useAuth } from "../../context/auth-context"
 import { useParams } from "react-router-dom"
+import InfiniteScroll from "react-infinite-scroll-component"
 
 const Profile = () => {
   const [petweets, setPetweets] = React.useState([])
@@ -96,15 +96,21 @@ const Profile = () => {
               Petposts
             </Text>
           </Flex>
-          {petweets?.map((petweet) => (
-            <Cardtweet
-              key={petweet?.id}
-              name={petweet?.user.name}
-              usernameProp={petweet?.user.username}
-              postTime={petweet?.createdAt}
-              content={petweet?.content}
-            />
-          ))}
+          <InfiniteScroll
+            dataLength={petweets.length}
+            next={() => setPage(page + 1)}
+            hasMore={hasMore}
+          >
+            {petweets?.map((petweet) => (
+              <Cardtweet
+                key={petweet?.id}
+                name={petweet?.user.name}
+                usernameProp={petweet?.user.username}
+                postTime={petweet?.createdAt}
+                content={petweet?.content}
+              />
+            ))}
+          </InfiniteScroll>
         </Flex>
         <Box
           display={["none", "flex"]}
