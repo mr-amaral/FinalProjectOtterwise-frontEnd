@@ -73,7 +73,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
           flexDirection={["column"]}
           display={["none", "flex"]}
         >
-          <DrawerLink icon={homeIcon} to={"/home"}>
+          <DrawerLink icon={homeIcon} to={"/"}>
             Home
           </DrawerLink>
           <DrawerLink icon={profileIcon} to={`/profile/${auth.user.username}`}>
@@ -116,9 +116,8 @@ const HomeHeader = ({ btnMobile, logo }) => {
                 backdropFilter="auto"
                 backdropBlur="2px"
               />
-              <ModalContent>
+              <ModalContent w={["300px", "385px"]} h={["175px", "178px"]}>
                 <ModalHeader>Sair desta conta?</ModalHeader>
-                <ModalCloseButton />
                 <ModalBody>
                   <Text>Deseja realmente sair desta conta?</Text>
                 </ModalBody>
