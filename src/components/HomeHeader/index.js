@@ -17,14 +17,16 @@ import {
   useDisclosure,
 } from "@chakra-ui/react"
 import React, { useRef } from "react"
-import { exit, homeIcon, profileIcon } from "../../assets/images"
+import { exit } from "../../assets/images"
 import { useAuth } from "../../context/auth-context"
 import DrawerLink from "../../components/DrawerLink"
+import { useLocation } from "react-router-dom"
 
 const HomeHeader = ({ btnMobile, logo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isOpenModal, setIsOpenModal] = React.useState(false)
   const auth = useAuth()
+  const { pathname } = useLocation()
 
   const handleClose = () => {
     onClose()
@@ -72,10 +74,46 @@ const HomeHeader = ({ btnMobile, logo }) => {
           flexDirection={["column"]}
           display={["none", "flex"]}
         >
-          <DrawerLink icon={homeIcon} to={"/"}>
+          <DrawerLink
+            icon={
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 21 17"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.57501 17V11H12.575V17H17.575V9H20.575L10.575 0L0.575012 9H3.57501V17H8.57501Z"
+                  fill={pathname === "/" ? "#00ACC1" : "#424242"}
+                />
+              </svg>
+            }
+            to={"/"}
+          >
             Home
           </DrawerLink>
-          <DrawerLink icon={profileIcon} to={`/profile/${auth.user.username}`}>
+          <DrawerLink
+            icon={
+              <svg
+                width="21"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.575 0C5.05501 0 0.575012 4.48 0.575012 10C0.575012 15.52 5.05501 20 10.575 20C16.095 20 20.575 15.52 20.575 10C20.575 4.48 16.095 0 10.575 0ZM10.575 3C12.235 3 13.575 4.34 13.575 6C13.575 7.66 12.235 9 10.575 9C8.91501 9 7.57501 7.66 7.57501 6C7.57501 4.34 8.91501 3 10.575 3ZM10.575 17.2C8.07501 17.2 5.86501 15.92 4.57501 13.98C4.60501 11.99 8.57501 10.9 10.575 10.9C12.565 10.9 16.545 11.99 16.575 13.98C15.285 15.92 13.075 17.2 10.575 17.2Z"
+                  fill={
+                    pathname === `/profile/${auth.user.username}`
+                      ? "#00ACC1"
+                      : "#424242"
+                  }
+                />
+              </svg>
+            }
+            to={`/profile/${auth.user.username}`}
+          >
             Meu Perfil
           </DrawerLink>
           <Flex w={["100%"]} gap={["11px"]}>

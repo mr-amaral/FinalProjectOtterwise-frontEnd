@@ -7,10 +7,15 @@ const DrawerLink = ({ children, icon, to, ...props }) => {
 
   return (
     <Box
+      color={match ? "#00ACC1" : "#424242"}
+      borderLeft={match ? "3px solid #00ACC1" : "none"}
+      backgroundColor={match ? "#e5f7f9" : "transparent"}
       mb={"10px"}
       display="flex"
       alignItems={"center"}
       justifyContent={"center"}
+      cursor={"pointer"}
+      h={["48px", "54px"]}
     >
       <Link
         fontWeight={["600", "700"]}
@@ -26,7 +31,6 @@ const DrawerLink = ({ children, icon, to, ...props }) => {
         as={RRLink}
         w="100%"
         color={match ? "#00ACC1" : "#424242"}
-        borderLeft={match ? "2px solid #00ACC1" : "none"}
         to={to}
         {...props}
       >
