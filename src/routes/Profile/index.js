@@ -84,7 +84,7 @@ const Profile = () => {
                 lineHeight={["21.79px"]}
                 letterSpacing={["-0.3px"]}
               >
-                {user?.username}
+                @{user?.username}
               </Text>
             </Flex>
           </Flex>

@@ -41,6 +41,7 @@ const Home = () => {
       setIsLoading(false)
       setPage(1)
       event.target.reset()
+      setTextLenght(0)
     } catch (error) {}
   }
   React.useEffect(() => {
@@ -94,6 +95,7 @@ const Home = () => {
                   placeholder="O que está acontecendo?"
                   name="content"
                   onChange={handleChange}
+                  maxLength={140}
                 />
 
                 <Text
@@ -109,8 +111,11 @@ const Home = () => {
                   m={"103px 30px 25px 0"}
                   borderRadius={"10px"}
                   variant="solid"
-                  width={"92px"}
+                  p={["20px"]}
+                  bg={["#00ACC1"]}
+                  color={["#fff"]}
                   height={["40px"]}
+                  _hover={{ bg: "#00ACC1", color: "#fff" }}
                   type="submit"
                 >
                   Petwittar

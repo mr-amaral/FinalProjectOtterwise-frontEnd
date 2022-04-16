@@ -24,7 +24,7 @@ const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
             src={data[0].image}
           ></Image>
         </Box>
-        <Flex w={["272px"]} h={["auto"]} flexDirection={["column"]}>
+        <Flex w={["272px", "100%"]} h={["auto"]} flexDirection={["column"]}>
           <Flex gap="4px">
             <Text
               fontWeight={["700"]}
@@ -44,7 +44,7 @@ const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
               letterSpacing={["-0.26px", "0"]}
               color={["gray.600", "#828282"]}
             >
-              {usernameProp}
+              @{usernameProp}
             </Text>
             <Text
               fontWeight={["300", "400"]}
@@ -67,6 +67,7 @@ const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
           </Flex>
           <Box>
             <Text
+              w={["100%"]}
               fontWeight={["400"]}
               fontSize={["0.87rem", "1rem"]}
               lineHeight={["1rem", "1.37rem"]}
