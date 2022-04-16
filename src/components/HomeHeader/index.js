@@ -9,7 +9,6 @@ import {
   Image,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -163,7 +162,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
 
             <DrawerBody p={"0"} mt={"36px"}>
               <Flex flexDirection={["column"]}>
-                <DrawerLink to={"/home"}>Home</DrawerLink>
+                <DrawerLink to={"/"}>Home</DrawerLink>
                 <DrawerLink to={`/profile/${auth.user.username}`}>
                   Meu Perfil
                 </DrawerLink>

@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroll-component"
 
 const Profile = () => {
   const [petweets, setPetweets] = React.useState([])
-  const [user, setUser] = React.useState([])
+  const [user, setUser] = React.useState(false)
   const { username } = useParams()
   const [hasMore, setHasMore] = React.useState(true)
   const [page, setPage] = React.useState(1)
@@ -27,6 +27,10 @@ const Profile = () => {
     }
   }, [username])
 
+  React.useLayoutEffect(() => {
+    setPage(1)
+  }, [username])
+
   React.useEffect(() => {
     try {
       const request = async () => {
@@ -37,14 +41,12 @@ const Profile = () => {
 
         if (page === 1) {
           setPetweets(responsePetweets.data.petweets)
-          // console.log(user.id)
         } else {
           setPetweets(petweets.concat(responsePetweets.data.petweets))
         }
         setHasMore(page < responsePetweets.data.pagination.pageCount)
       }
-      if (user?.id) {
-        console.log(user)
+      if (user) {
         request()
       }
     } catch (error) {

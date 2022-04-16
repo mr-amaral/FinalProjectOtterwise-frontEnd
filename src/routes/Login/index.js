@@ -27,7 +27,6 @@ import {
   Text,
   Image,
   Wrap,
-  useToast,
 } from "@chakra-ui/react"
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import { useState } from "react"
@@ -40,7 +39,6 @@ function Login() {
   const location = useLocation()
   const { signin } = useAuth()
 
-  const toast = useToast()
   const {
     register,
     handleSubmit,
