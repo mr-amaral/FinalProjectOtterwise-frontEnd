@@ -5,8 +5,16 @@ import TimeAgo from "react-timeago"
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter"
 import ptBrStrings from "react-timeago/lib/language-strings/pt-br"
 import { data } from "../../utils/data"
-const Cardtweet = ({ petImg, name, usernameProp, postTime, content }) => {
+const Cardtweet = ({
+  petImg,
+  name,
+  usernameProp,
+  postTime,
+  content,
+  onClick,
+}) => {
   const formatter = buildFormatter(ptBrStrings)
+
   return (
     <>
       <Box>

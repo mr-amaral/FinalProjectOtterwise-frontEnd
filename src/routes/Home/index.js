@@ -26,16 +26,16 @@ const Home = () => {
   const [hasMore, setHasMore] = React.useState(true)
 
   const handleChange = (event) => {
-    let inputValue = event.target.value
+    let inputValue = event.target.value.trim()
     setTextLenght(inputValue.length)
   }
 
   async function handleSubmit(event) {
     event.preventDefault()
     setIsLoading(true)
+
     const formData = new FormData(event.target)
     const content = formData.get("content")
-
     try {
       await postPetweet({ content })
       setPetweetsChange(!petweetsChange)
