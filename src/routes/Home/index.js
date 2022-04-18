@@ -15,6 +15,7 @@ import {
 } from "@chakra-ui/react"
 import { useChange } from "../../context/petweetChange-context"
 import InfiniteScroll from "react-infinite-scroll-component"
+import ModalPetweet from "../../components/ModalPetweet"
 
 const Home = () => {
   const [petweets, setPetweets] = React.useState([])
@@ -75,8 +76,8 @@ const Home = () => {
     <>
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader w={["100%"]} btnMobile={btnMobile} logo={logo} />
-        <Flex w={["100%", "100%"]} flexDirection={["column"]}>
-          <Flex display={["none", "flex"]} p={"34px"}>
+        <Flex w={["100%", "60%"]} flexDirection={["column"]}>
+          <Flex display={["none", "flex"]} p={"34px 0 0 34px"}>
             <Image
               width={"48px"}
               height={"48px"}
@@ -123,6 +124,11 @@ const Home = () => {
               </Flex>
             </FormControl>
           </Flex>
+          {/* <Box
+            display={["none", "block"]}
+            bg={"rgba(0, 0, 0, 0.2)"}
+            h={"10px"}
+          ></Box> */}
           <InfiniteScroll
             dataLength={petweets.length}
             next={() => setPage(page + 1)}
@@ -149,6 +155,7 @@ const Home = () => {
           h={["100vh"]}
         ></Box>
       </Flex>
+      <ModalPetweet />
     </>
   )
 }

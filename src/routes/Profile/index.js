@@ -15,6 +15,12 @@ const Profile = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const [page, setPage] = React.useState(1)
 
+  // deixar a primeira letra do name maiuscula
+  const capitalize = (s) => {
+    if (typeof s !== "string") return ""
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
   React.useEffect(() => {
     try {
       const request = async () => {
@@ -60,13 +66,12 @@ const Profile = () => {
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader btnMobile={btnMobile} logo={logo} />
         <Flex
-          w={["100%", "100%"]}
-          // gap={["12px"]}
+          w={["100%", "60%"]}
           p={["16px 0 0 0", "0"]}
           flexDirection={"column"}
         >
-          <Flex p={["16px"]} gap={["16px"]}>
-            <Box w={["73px"]}>
+          <Flex mt={["0", "20px"]} p={["16px"]} gap={["16px"]}>
+            <Box w={["73px", "90px", "120px"]}>
               <Image w={["100%"]} src={petImg} />
             </Box>
             <Flex p={["16px"]} gap={["4px"]} flexDirection={"column"}>
@@ -76,7 +81,7 @@ const Profile = () => {
                 lineHeight={["29.96px"]}
                 letterSpacing={["-0.3px"]}
               >
-                {user?.name}
+                {user ? capitalize(user.name) : ""}
               </Text>
               <Text
                 fontWeight={["400"]}
@@ -90,12 +95,13 @@ const Profile = () => {
           </Flex>
           <Flex p={["16px 0 0 16px"]} justifyContent={["flex-start"]}>
             <Text
+              align={"center"}
+              w={["86px", "92px"]}
               p={["0 0 4.5px 0"]}
-              fontWeight={["600"]}
-              fontSize={["16px"]}
-              lineHeight={["21.79px"]}
-              borderRadius={["3px"]}
-              borderBottom={"3px solid #00ACC1"}
+              fontWeight={["600", "700"]}
+              fontSize={["16px", "18px"]}
+              lineHeight={["21.79px", "24.51px"]}
+              borderBottom={["3px solid #00ACC1", "6px solid #00ACC1"]}
             >
               Petposts
             </Text>
@@ -118,7 +124,7 @@ const Profile = () => {
         </Flex>
         <Box
           display={["none", "flex"]}
-          w={["24%"]}
+          w={["30%"]}
           borderLeft={["none", "1px solid rgba(33,33,33,0.2)"]}
           h={["100vh"]}
         ></Box>

@@ -10,8 +10,10 @@ import dogimg from "./png/dogimg.png"
 import exit from "./svg/exit.svg"
 import homeIcon from "./svg/home.svg"
 import profileIcon from "./svg/perfil.svg"
+import postMobile from "./svg/postMobile.svg"
 
 export {
+  postMobile,
   profileIcon,
   homeIcon,
   logo,
