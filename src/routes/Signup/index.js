@@ -70,26 +70,24 @@ const Signup = () => {
   const onSubmit = async (data) => {
     try {
       await signup(data)
+      navigate("/login")
       toast({
         title: "Sucesso",
         description: "Cadastro realizado com sucesso",
         status: "success",
-        position: "center",
-        duration: 3000,
-        isClosable: true,
-      })
-      setTimeout(() => {
-        navigate("/login")
-      }, 1000)
-    } catch (error) {
-      console.log(error)
-      toast({
-        title: "Conta não foi criada.",
-        description: error.response.data,
-        status: "error",
         duration: 5000,
         isClosable: true,
       })
+    } catch (error) {
+      if (error.response.status === 400) {
+        toast({
+          title: "Conta não foi criada.",
+          description: error.response.data,
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        })
+      }
     }
   }
 
@@ -232,17 +230,19 @@ const Signup = () => {
                     <InputRightElement>
                       <IconButton
                         bg="inherit"
-                        icon={offView ? <ViewIcon /> : <ViewOffIcon />}
+                        icon={offView ? <ViewOffIcon /> : <ViewIcon />}
                         onClick={() => handleClick()}
                       />
                     </InputRightElement>
                   </InputGroup>
                   <Text
+                    mt={["4px"]}
                     fontWeight={["400"]}
-                    lineHeight={["16px"]}
+                    lineHeight={["16px", "16px"]}
                     fontSize={["10px", "12px"]}
                   >
-                    {errors.password && errors.password.message}
+                    {" "}
+                    Deve conter no mínimo um número e uma letra maiúscula
                   </Text>
                 </Box>
               </Flex>

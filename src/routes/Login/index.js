@@ -27,7 +27,6 @@ import {
   Text,
   Image,
   Wrap,
-  useToast,
 } from "@chakra-ui/react"
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons"
 import { useState } from "react"
@@ -40,7 +39,6 @@ function Login() {
   const location = useLocation()
   const { signin } = useAuth()
 
-  const toast = useToast()
   const {
     register,
     handleSubmit,
@@ -54,23 +52,8 @@ function Login() {
     try {
       await signin(data)
       setIsLoading(false)
-      toast({
-        title: "Login realizado com sucesso!",
-        status: "success",
-        position: "top",
-        duration: 5000,
-        isClosable: true,
-      })
       navigate(from, { replace: true })
-    } catch (error) {
-      toast({
-        title: "Email ou senha incorretos",
-        description: error.message,
-        status: "error",
-        duration: 1000,
-        isClosable: true,
-      })
-    }
+    } catch (error) {}
   }
 
   const handleClick = () => {
@@ -185,7 +168,7 @@ function Login() {
                     <InputRightElement>
                       <IconButton
                         bg="inherit"
-                        icon={offView ? <ViewIcon /> : <ViewOffIcon />}
+                        icon={offView ? <ViewOffIcon /> : <ViewIcon />}
                         onClick={() => handleClick()}
                       />
                     </InputRightElement>
