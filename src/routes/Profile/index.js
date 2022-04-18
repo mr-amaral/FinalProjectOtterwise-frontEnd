@@ -15,7 +15,6 @@ const Profile = () => {
   const [hasMore, setHasMore] = React.useState(true)
   const [page, setPage] = React.useState(1)
 
-  // deixar a primeira letra do name maiuscula
   const capitalize = (s) => {
     if (typeof s !== "string") return ""
     return s.charAt(0).toUpperCase() + s.slice(1)
