@@ -27,17 +27,17 @@ export function AuthProvider({ children }) {
       setInStorage("user", user)
       setUser(user)
     } catch (error) {
-      toast({
-        title: "Login negado.",
-        description: "Senha ou email incorretos",
-        status: "error",
-        duration: 5000,
-        isClosable: true,
-      })
+      if (error.response.status === 401) {
+        toast({
+          title: "Login negado.",
+          description: "Senha ou email incorretos",
+          status: "error",
+          duration: 5000,
+          isClosable: true,
+        })
+      }
     }
   }
-
-  // quando o usuario deslogar manda ela para a pagina de login
 
   const signout = () => {
     localStorage.clear()
