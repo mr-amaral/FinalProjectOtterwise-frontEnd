@@ -16,6 +16,7 @@ import {
 import { useChange } from "../../context/petweetChange-context"
 import InfiniteScroll from "react-infinite-scroll-component"
 import ModalPetweet from "../../components/ModalPetweet"
+import { petImg } from "../../assets/images"
 
 const Home = () => {
   const [petweets, setPetweets] = React.useState([])
@@ -87,9 +88,7 @@ const Home = () => {
               width={"48px"}
               height={"48px"}
               borderRadius={"50%"}
-              src={
-                "https://i0.wp.com/www.portaldodog.com.br/cachorros/wp-content/uploads/2021/03/visa%CC%83o-do-cachorro-2.jpeg?w=626&ssl=1"
-              }
+              src={petImg}
               alt={"avatar"}
             />
             <FormControl as={"form"} onSubmit={handleSubmit}>
@@ -137,8 +136,7 @@ const Home = () => {
               hasMore={hasMore}
               loader={
                 <CircularProgress
-                  mt={["16px"]}
-                  left={"50%"}
+                  mt={["50px"]}
                   isIndeterminate
                   color="cyan.400"
                   p={["16px"]}

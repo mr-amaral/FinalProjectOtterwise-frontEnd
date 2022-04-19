@@ -136,14 +136,12 @@ const Profile = () => {
               ))}
             </InfiniteScroll>
           ) : (
-            <Flex
-              flexDirection={"column"}
-              p={"25px 25px 0 25px"}
-              justifyContent={"flex-start"}
-            >
-              <Text color={"red"} fontSize={["25px"]}>
-                Você não petweetou nada ainda!
-              </Text>
+            <Flex justifyContent={"center"}>
+              <CircularProgress
+                mt={["50px"]}
+                isIndeterminate
+                color="cyan.400"
+              />
             </Flex>
           )}
         </Flex>

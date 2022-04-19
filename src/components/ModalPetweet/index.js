@@ -16,7 +16,7 @@ import {
   Text,
 } from "@chakra-ui/react"
 import { useChange } from "../../context/petweetChange-context"
-import { postMobile } from "../../assets/images"
+import { postMobile, petImg } from "../../assets/images"
 const ModalPetweet = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { petweetsChange, setPetweetsChange } = useChange(false)
@@ -91,9 +91,7 @@ const ModalPetweet = () => {
                   width={"37px"}
                   height={"37px"}
                   borderRadius={"50%"}
-                  src={
-                    "https://img.favpng.com/25/7/23/computer-icons-user-profile-avatar-image-png-favpng-LFqDyLRhe3PBXM0sx2LufsGFU.jpg"
-                  }
+                  src={petImg}
                   alt={""}
                 />
                 <Textarea
