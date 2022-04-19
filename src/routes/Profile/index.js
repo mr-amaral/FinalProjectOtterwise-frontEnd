@@ -142,7 +142,7 @@ const Profile = () => {
               justifyContent={"flex-start"}
             >
               <Text color={"red"} fontSize={["25px"]}>
-                Você ainda não petweetou nada ainda!
+                Você não petweetou nada ainda!
               </Text>
             </Flex>
           )}
