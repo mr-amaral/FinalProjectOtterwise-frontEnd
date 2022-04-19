@@ -50,12 +50,14 @@ function Login() {
   const onSubmit = async (data) => {
     setIsLoading(true)
     try {
-      await signin(data)
+      const { email, password } = data
+      const lowerCaseEmail = email.toLowerCase().trim()
+      const response = await signin({ email: lowerCaseEmail, password })
+      await signin(response)
       setIsLoading(false)
       navigate(from, { replace: true })
     } catch (error) {}
   }
-
   const handleClick = () => {
     setOffView(!offView)
     if (type === "password") {

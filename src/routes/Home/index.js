@@ -76,7 +76,12 @@ const Home = () => {
     <>
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader w={["100%"]} btnMobile={btnMobile} logo={logo} />
-        <Flex w={["100%", "60%"]} flexDirection={["column"]}>
+        <Flex
+          mt={["48px", "0"]}
+          ml={["0", "25%"]}
+          w={["100%", "60%"]}
+          flexDirection={["column"]}
+        >
           <Flex display={["none", "flex"]} p={"34px 0 0 34px"}>
             <Image
               width={"48px"}
@@ -124,29 +129,40 @@ const Home = () => {
               </Flex>
             </FormControl>
           </Flex>
-          {/* <Box
-            display={["none", "block"]}
-            bg={"rgba(0, 0, 0, 0.2)"}
-            h={"10px"}
-          ></Box> */}
-          <InfiniteScroll
-            dataLength={petweets.length}
-            next={() => setPage(page + 1)}
-            hasMore={hasMore}
-            loader={
-              <CircularProgress left={"50%"} isIndeterminate color="cyan.400" />
-            }
-          >
-            {petweets?.map((user) => (
-              <CardTweet
-                key={user.id}
-                name={user.user.name}
-                usernameProp={user.user.username}
-                content={user.content}
-                postTime={user.createdAt}
-              />
-            ))}
-          </InfiniteScroll>
+          {petweets.length > 0 ? (
+            <InfiniteScroll
+              scrollThreshold={0.5}
+              dataLength={petweets.length}
+              next={() => setPage(page + 1)}
+              hasMore={hasMore}
+              loader={
+                <CircularProgress
+                  mt={["16px"]}
+                  left={"50%"}
+                  isIndeterminate
+                  color="cyan.400"
+                  p={["16px"]}
+                />
+              }
+            >
+              <Box
+                display={["none", "block"]}
+                bg={"rgba(0, 0, 0, 0.2)"}
+                h={"10px"}
+              ></Box>
+              {petweets?.map((user) => (
+                <CardTweet
+                  key={user.id}
+                  name={user.user.name}
+                  usernameProp={user.user.username}
+                  content={user.content}
+                  postTime={user.createdAt}
+                />
+              ))}
+            </InfiniteScroll>
+          ) : (
+            <CircularProgress left={"50%"} isIndeterminate color="cyan.400" />
+          )}
         </Flex>
         <Box
           display={["none", "flex"]}

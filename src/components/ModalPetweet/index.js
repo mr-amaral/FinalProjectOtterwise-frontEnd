@@ -24,7 +24,7 @@ const ModalPetweet = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   const handleChange = (event) => {
-    let inputValue = event.target.value
+    let inputValue = event.target.value.trim()
     setTextLenght(inputValue.length)
   }
   const handleClose = () => {
@@ -51,8 +51,8 @@ const ModalPetweet = () => {
       <Image
         display={["flex", "none"]}
         position="fixed"
-        bottom={"0px"}
-        right={"0px"}
+        bottom={"24px"}
+        right={"16px"}
         onClick={onOpen}
         borderRadius={"50%"}
         src={postMobile}
@@ -67,7 +67,7 @@ const ModalPetweet = () => {
             justify={"space-between"}
           >
             <ModalCloseButton
-              _focus={"none"}
+              _focus={"transparent"}
               m={"14px 0 14px 30px"}
               position={"revert"}
             >

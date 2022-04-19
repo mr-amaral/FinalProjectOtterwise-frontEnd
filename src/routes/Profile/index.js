@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from "@chakra-ui/react"
+import { Box, CircularProgress, Flex, Image, Text } from "@chakra-ui/react"
 import React from "react"
 import { btnMobile, logo, petImg } from "../../assets/images"
 import HomeHeader from "../../components/HomeHeader"
@@ -65,6 +65,8 @@ const Profile = () => {
       <Flex flexDirection={["column", "row"]} h={["100vh"]}>
         <HomeHeader btnMobile={btnMobile} logo={logo} />
         <Flex
+          ml={["0", "25%"]}
+          mt={["48px", "0"]}
           w={["100%", "60%"]}
           p={["16px 0 0 0", "0"]}
           flexDirection={"column"}
@@ -105,21 +107,45 @@ const Profile = () => {
               Petposts
             </Text>
           </Flex>
-          <InfiniteScroll
-            dataLength={petweets.length}
-            next={() => setPage(page + 1)}
-            hasMore={hasMore}
-          >
-            {petweets?.map((petweet) => (
-              <Cardtweet
-                key={petweet?.id}
-                name={petweet?.user.name}
-                usernameProp={petweet?.user.username}
-                postTime={petweet?.createdAt}
-                content={petweet?.content}
-              />
-            ))}
-          </InfiniteScroll>
+
+          {petweets.length > 0 ? (
+            <InfiniteScroll
+              scrollThreshold={0.5}
+              border={["1px solid rgba(33,33,33,0.2)"]}
+              dataLength={petweets.length}
+              next={() => setPage(page + 1)}
+              hasMore={hasMore}
+              loader={
+                <CircularProgress
+                  mt={["16px"]}
+                  left={"50%"}
+                  isIndeterminate
+                  color="cyan.400"
+                  p={["16px"]}
+                />
+              }
+            >
+              {petweets?.map((petweet) => (
+                <Cardtweet
+                  key={petweet?.id}
+                  name={petweet?.user.name}
+                  usernameProp={petweet?.user.username}
+                  postTime={petweet?.createdAt}
+                  content={petweet?.content}
+                />
+              ))}
+            </InfiniteScroll>
+          ) : (
+            <Flex
+              flexDirection={"column"}
+              p={"25px 25px 0 25px"}
+              justifyContent={"flex-start"}
+            >
+              <Text color={"red"} fontSize={["25px"]}>
+                Você ainda não petweetou nada ainda!
+              </Text>
+            </Flex>
+          )}
         </Flex>
         <Box
           display={["none", "flex"]}
