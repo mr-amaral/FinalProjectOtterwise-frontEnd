@@ -21,6 +21,7 @@ import { exit } from "../../assets/images"
 import { useAuth } from "../../context/auth-context"
 import DrawerLink from "../../components/DrawerLink"
 import { useLocation } from "react-router-dom"
+import { petImg } from "../../assets/images"
 
 const HomeHeader = ({ btnMobile, logo }) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -190,7 +191,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
                 width={"56px"}
                 height={"56px"}
                 borderRadius={"50%"}
-                src="https://i0.wp.com/www.portaldodog.com.br/cachorros/wp-content/uploads/2021/03/visa%CC%83o-do-cachorro-2.jpeg?w=626&ssl=1"
+                src={petImg}
                 alt="user"
               />
             </DrawerHeader>
