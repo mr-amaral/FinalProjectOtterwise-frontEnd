@@ -44,7 +44,6 @@ const HomeHeader = ({ btnMobile, logo }) => {
         boxShadow={["0 2px 4px 0 rgba(33,33,33,0.2)", "none"]}
         w={["100%", "25%"]}
         h={["48px", "100vh"]}
-        borderRight={["none", "1px solid rgba(33,33,33,0.2)"]}
         alignItems={["center", "center"]}
         justifyContent={["center", "flex-start"]}
       >
@@ -77,6 +76,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
           display={["none", "flex"]}
         >
           <DrawerLink
+            mr={"25px"}
             icon={
               <svg
                 width="30"
@@ -120,6 +120,7 @@ const HomeHeader = ({ btnMobile, logo }) => {
           </DrawerLink>
 
           <Button
+            mr={"35px"}
             onClick={handleClose}
             border={["none"]}
             _focus={{

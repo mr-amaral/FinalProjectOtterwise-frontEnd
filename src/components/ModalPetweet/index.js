@@ -1,5 +1,5 @@
 import { postPetweet } from "../../services/petweets"
-import { useState } from "react"
+import React, { useState } from "react"
 import {
   Button,
   Flex,
@@ -31,19 +31,21 @@ const ModalPetweet = () => {
     onClose()
     setTextLenght(0)
   }
+
   async function handleSubmit(event) {
     event.preventDefault()
     setIsLoading(true)
     const formData = new FormData(event.target)
     const content = formData.get("content")
-
     try {
       await postPetweet({ content })
+      setIsLoading(false)
+      setPetweetsChange(!petweetsChange)
+      onClose()
+      event.target.reset()
+      window.location.reload()
+      window.scrollTo(0, 0)
     } catch (error) {}
-    setPetweetsChange(!petweetsChange)
-    onClose()
-    setIsLoading(false)
-    event.target.reset()
   }
 
   return (
@@ -66,11 +68,7 @@ const ModalPetweet = () => {
             borderBottom={"1px solid #EEEEEE"}
             justify={"space-between"}
           >
-            <ModalCloseButton
-              _focus={"transparent"}
-              m={"14px 0 14px 30px"}
-              position={"revert"}
-            >
+            <ModalCloseButton m={"14px 0 14px 30px"} position={"revert"}>
               <Text
                 fontWeight="300"
                 fontSize="12px"

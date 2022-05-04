@@ -83,7 +83,12 @@ const Home = () => {
           w={["100%", "60%"]}
           flexDirection={["column"]}
         >
-          <Flex display={["none", "flex"]} p={"34px 0 0 34px"}>
+          <Flex
+            borderLeft={"1px solid rgba(0, 0, 0, 0.1)"}
+            borderRight={"1px solid rgba(0, 0, 0, 0.1)"}
+            display={["none", "flex"]}
+            p={"34px 0 0 34px"}
+          >
             <Image
               width={"48px"}
               height={"48px"}
@@ -162,14 +167,9 @@ const Home = () => {
             <CircularProgress left={"50%"} isIndeterminate color="cyan.400" />
           )}
         </Flex>
-        <Box
-          display={["none", "flex"]}
-          w={["24%"]}
-          borderLeft={["none", "1px solid rgba(33,33,33,0.2)"]}
-          h={["100vh"]}
-        ></Box>
+        <Box display={["none", "flex"]} w={["24%"]} h={["100vh"]}></Box>
       </Flex>
-      <ModalPetweet />
+      <ModalPetweet handleSubmit={handleSubmit} handleChange={handleChange} />
     </>
   )
 }

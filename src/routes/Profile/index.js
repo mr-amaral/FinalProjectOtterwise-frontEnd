@@ -71,43 +71,48 @@ const Profile = () => {
           p={["16px 0 0 0", "0"]}
           flexDirection={"column"}
         >
-          <Flex mt={["0", "20px"]} p={["16px"]} gap={["16px"]}>
-            <Box w={["73px", "90px", "120px"]}>
-              <Image w={["100%"]} src={petImg} />
-            </Box>
-            <Flex p={["16px"]} gap={["4px"]} flexDirection={"column"}>
+          <Flex
+            flexDirection={"column"}
+            borderLeft={"1px solid rgba(0, 0, 0, 0.1)"}
+            borderRight={"1px solid rgba(0, 0, 0, 0.1)"}
+          >
+            <Flex mt={["0", "20px"]} p={["16px"]} gap={["16px"]}>
+              <Box minW={["73px", "90px", "120px"]}>
+                <Image w={["100%"]} src={petImg} />
+              </Box>
+              <Flex p={["16px"]} gap={["4px"]} flexDirection={"column"}>
+                <Text
+                  fontWeight={["700"]}
+                  fontSize={["22px"]}
+                  lineHeight={["29.96px"]}
+                  letterSpacing={["-0.3px"]}
+                >
+                  {user ? capitalize(user.name) : ""}
+                </Text>
+                <Text
+                  fontWeight={["400"]}
+                  fontSize={["16px"]}
+                  lineHeight={["21.79px"]}
+                  letterSpacing={["-0.3px"]}
+                >
+                  @{user?.username}
+                </Text>
+              </Flex>
+            </Flex>
+            <Flex p={["16px 0 0 16px"]} justifyContent={["flex-start"]}>
               <Text
-                fontWeight={["700"]}
-                fontSize={["22px"]}
-                lineHeight={["29.96px"]}
-                letterSpacing={["-0.3px"]}
+                align={"center"}
+                w={["86px", "92px"]}
+                p={["0 0 4.5px 0"]}
+                fontWeight={["600", "700"]}
+                fontSize={["16px", "18px"]}
+                lineHeight={["21.79px", "24.51px"]}
+                borderBottom={["3px solid #00ACC1", "6px solid #00ACC1"]}
               >
-                {user ? capitalize(user.name) : ""}
-              </Text>
-              <Text
-                fontWeight={["400"]}
-                fontSize={["16px"]}
-                lineHeight={["21.79px"]}
-                letterSpacing={["-0.3px"]}
-              >
-                @{user?.username}
+                Petposts
               </Text>
             </Flex>
           </Flex>
-          <Flex p={["16px 0 0 16px"]} justifyContent={["flex-start"]}>
-            <Text
-              align={"center"}
-              w={["86px", "92px"]}
-              p={["0 0 4.5px 0"]}
-              fontWeight={["600", "700"]}
-              fontSize={["16px", "18px"]}
-              lineHeight={["21.79px", "24.51px"]}
-              borderBottom={["3px solid #00ACC1", "6px solid #00ACC1"]}
-            >
-              Petposts
-            </Text>
-          </Flex>
-
           {petweets.length > 0 ? (
             <InfiniteScroll
               scrollThreshold={0.5}
@@ -136,21 +141,14 @@ const Profile = () => {
               ))}
             </InfiniteScroll>
           ) : (
-            <Flex justifyContent={"center"}>
-              <CircularProgress
-                mt={["50px"]}
-                isIndeterminate
-                color="cyan.400"
-              />
+            <Flex>
+              <Text margin={"16px"} color={"red"} fontSize={["20px", "25px"]}>
+                Você não possui petweets!
+              </Text>
             </Flex>
           )}
         </Flex>
-        <Box
-          display={["none", "flex"]}
-          w={["30%"]}
-          borderLeft={["none", "1px solid rgba(33,33,33,0.2)"]}
-          h={["100vh"]}
-        ></Box>
+        <Box display={["none", "flex"]} w={["30%"]} h={["100vh"]}></Box>
       </Flex>
     </>
   )
