@@ -3,7 +3,7 @@ import * as React from "react"
 import { Link } from "react-router-dom"
 import TimeAgo from "react-timeago"
 import buildFormatter from "react-timeago/lib/formatters/buildFormatter"
-import ptBrStrings from "react-timeago/lib/language-strings/pt-br"
+import Time from "react-timeago/lib/language-strings/en-short"
 import { data } from "../../utils/data"
 const Cardtweet = ({
   petImg,
@@ -13,19 +13,12 @@ const Cardtweet = ({
   content,
   onClick,
 }) => {
-  const formatter = buildFormatter(ptBrStrings)
+  const formatter = buildFormatter(Time)
 
   return (
     <>
-      <Box>
-        <Flex
-          maxW={["100%"]}
-          h={["auto"]}
-          border="1px"
-          borderColor="gray.200"
-          p={"20px 16px 16px 16px"}
-          gap="8px"
-        >
+      <Box border="1px" borderColor="gray.200">
+        <Flex maxW={["90%"]} h={["auto"]} p={"20px 16px 16px 16px"} gap="8px">
           <Box w="48px" h="48px">
             <Image
               maxW={["48px", "40px"]}
@@ -33,7 +26,7 @@ const Cardtweet = ({
               src={data[0].image}
             ></Image>
           </Box>
-          <Flex w={["auto", "100%"]} h={["auto"]} flexDirection={["column"]}>
+          <Flex w={["90%"]} h={["auto"]} flexDirection={["column"]}>
             <Flex gap="4px">
               <Text
                 fontWeight={["700"]}
