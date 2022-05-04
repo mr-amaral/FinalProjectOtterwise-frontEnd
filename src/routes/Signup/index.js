@@ -54,7 +54,7 @@ const Signup = () => {
       .required("Campo obrigatório")
       .matches(
         /^(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/,
-        "Deve conter no mínimo um número e uma letra maiúscula"
+        "Deve conter no mínimo 8 caracteres um número e uma letra maiúscula"
       ),
     username: yup
       .string("Campo precisa ser um texto")
@@ -164,6 +164,7 @@ const Signup = () => {
                     fontWeight={["400"]}
                     lineHeight={["16px"]}
                     fontSize={["10px", "12px"]}
+                    color="red.500"
                   >
                     {errors.name && errors.name.message}
                   </Text>
@@ -186,6 +187,7 @@ const Signup = () => {
                     fontWeight={["400"]}
                     lineHeight={["16px"]}
                     fontSize={["10px", "12px"]}
+                    color="red.500"
                   >
                     {errors.email && errors.email.message}
                   </Text>
@@ -208,6 +210,7 @@ const Signup = () => {
                     fontWeight={["400"]}
                     lineHeight={["16px"]}
                     fontSize={["10px", "12px"]}
+                    color="red.500"
                   >
                     {errors.username && errors.username.message}
                   </Text>
@@ -240,9 +243,9 @@ const Signup = () => {
                     fontWeight={["400"]}
                     lineHeight={["16px", "16px"]}
                     fontSize={["10px", "12px"]}
+                    color="red.500"
                   >
-                    {" "}
-                    Deve conter no mínimo um número e uma letra maiúscula
+                    {errors.password && errors.password.message}
                   </Text>
                 </Box>
               </Flex>
